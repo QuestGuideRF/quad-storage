@@ -1,0 +1,30 @@
+[package]
+name = "quad-storage"
+version = "0.1.4"
+authors = ["Илья Шепрут <optozorax@gmail.com>"]
+edition = "2018"
+license = "MIT/Apache-2.0"
+homepage = "https://github.com/optozorax/quad-storage"
+repository = "https://github.com/optozorax/quad-storage"
+description = """
+Plugin for macro-, mini-quad (quads) to save data in simple local storage using Web Storage API in WASM and local file on a native platforms.
+"""
+readme="README.md"
+include = [
+  "**/*.rs",
+  "Cargo.toml",
+]
+
+[dependencies]
+lazy_static = "1.4.0"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+quad-storage-sys = { path = "quad-storage-sys", version = "0.1.0" }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+nanoserde = "0.1.29"
+
+[dev-dependencies]
+egui-macroquad = "0.12.0"
+macroquad = "0.3.7"
+egui = "0.19"
